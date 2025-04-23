@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs'; // bcrypt ko bcryptjs se replace kiya
 
 const userSchema = mongoose.Schema({
     username: {
@@ -44,13 +44,13 @@ const userSchema = mongoose.Schema({
 // Password hashing middleware
 userSchema.pre('save', async function (next) {
     if (!this.isModified('password')) return next();
-    this.password = await bcrypt.hash(this.password, 10); // 10 salt rounds
+    this.password = await bcrypt.hash(this.password, 10); // bcryptjs ka use ho raha hai
     next();
 });
 
 // Method to compare passwords
 userSchema.methods.comparePassword = async function (candidatePassword) {
-    return await bcrypt.compare(candidatePassword, this.password);
+    return await bcrypt.compare(candidatePassword, this.password); // bcryptjs ka use ho raha hai
 };
 
 const User = mongoose.model("User", userSchema);
