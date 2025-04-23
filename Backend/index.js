@@ -16,7 +16,10 @@ const MONGO_URI = process.env.MONGO_DB_URI;
 // Middleware
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors());
+app.use(cors({
+    origin: 'https://cokkie-chat-q6sj.onrender.com',  // Frontend ka URL
+    credentials: true
+}));
 
 // MongoDB Connection
 mongoose.connect(MONGO_URI)
