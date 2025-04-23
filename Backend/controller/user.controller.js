@@ -1,5 +1,5 @@
 import User from "../models/user.model.js";
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import createTokenAndSaveCookie from '../jwt/generateToken.js'
 export const signUp = async (req, res) => {
@@ -8,7 +8,7 @@ export const signUp = async (req, res) => {
 
         if (password !== confirmPassword) {
             return res.status(400).json({ message: "Confirm Password do not match" })
-        }
+        }   
         // check is user exist
         const exisitingUser = await User.findOne({ $or: [{ email }, { username }] })
         if (exisitingUser) {
