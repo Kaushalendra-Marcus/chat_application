@@ -8,7 +8,7 @@ export const SocketProvider = ({ children }) => {
     const { authUser } = useAuth()
     useEffect(() => {
         if (authUser) {
-            const socket = io("http://localhost:3001/", {
+            const socket = io("https://cokkie-chat.onrender.com", {
                 query: {
                     userId: authUser?.user?._id,
                 }
