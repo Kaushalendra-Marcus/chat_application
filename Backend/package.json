@@ -7,9 +7,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "NODE_ENV=production node index.js",
-    "dev" : "nodemon index.js",
+    "dev": "nodemon index.js",
     "build": "npm install && npm install --prefix Frontend && npm run build --prefix Frontend"
-
   },
   "keywords": [
     "Chat-App",
